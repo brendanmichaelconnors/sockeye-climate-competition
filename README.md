@@ -34,5 +34,5 @@ Project made possible in part by grant from the [National Center for Ecological 
 
 - `hatch_effects.R`:  calculate estimated effects of hatchery pink production.
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3813107.svg)](https://doi.org/10.5281/zenodo.3813107)
+
 
