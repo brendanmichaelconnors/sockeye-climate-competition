@@ -1,7 +1,7 @@
 Code to reproduce analyses in: 
 >Connors, B., Malick M., Ruggerone R., Adkison M., Irvine J., Campbell R., and K. Gorman. In press. Climate and competition influence sockeye salmon population dynamics across the Northeast Pacific Ocean. Canadian Journal of Fisheries and Aquatic Sciences.
 
-Project made possible in part by grant from the [National Center for Ecological Analysis and Synthesis](https://www.nceas.ucsb.edu/) and the [State of Alaskan Salmon and People project](https://alaskasalmonandpeople.org/)
+Project made possible in part by grant from the [National Center for Ecological Analysis and Synthesis](https://www.nceas.ucsb.edu/) and the [State of Alaskan Salmon and People](https://alaskasalmonandpeople.org/) project.
 
 ## Files
 - `make.R`: All code required to reproduce current set of simulations and figures.
