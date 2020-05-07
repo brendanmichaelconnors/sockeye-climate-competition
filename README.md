@@ -4,13 +4,13 @@ Code to reproduce analyses in:
 Project made possible in part by grant from the [National Center for Ecological Analysis and Synthesis](https://www.nceas.ucsb.edu/) and the [State of Alaskan Salmon and People](https://alaskasalmonandpeople.org/) project.
 
 ## Files
-- `make.R`: Source this file to reproduce the project.
+- `make.R`: source this file to reproduce the project.
 
-- `load.R`: Loads packages and scripts necessary for analysis. 
+- `load.R`: load packages and scripts necessary for analysis. 
 
-- `functions.R`: All functions written for the analysis are placed in this file.
+- `functions.R`: all functions written for the analysis are placed in this file.
   
-- `data_download.R`: Download data needed for project and write to CSV.
+- `data_download.R`: download data needed for project and write to CSV.
 
 - `sock_data_clean.R`: clean/process the raw downloaded sockeye data.
   
