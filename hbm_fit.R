@@ -1,4 +1,4 @@
-## Fit hierarchical bayesian models
+## Fit hierarchical Bayesian models
 
 if(!dir.exists("./figures/hbm_fit/"))
     dir.create("./figures/hbm_fit/")
