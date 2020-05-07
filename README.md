@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3813107.svg)](https://doi.org/10.5281/zenodo.3813107)
+
 Code to reproduce analyses in: 
 >Connors, B., Malick M., Ruggerone R., Adkison M., Irvine J., Campbell R., and K. Gorman. In press. Climate and competition influence sockeye salmon population dynamics across the Northeast Pacific Ocean. Canadian Journal of Fisheries and Aquatic Sciences.
 
