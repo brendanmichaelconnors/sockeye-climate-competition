@@ -10,10 +10,23 @@ Project made possible in part by grant from the [National Center for Ecological 
 
 - `functions.R`: All functions written for the analysis are placed in this file.
   
-- `close_loop_sims.R`: Run closed loop forwad simulations.
+- `data_download.R`: Download data needed for project and write to CSV.
 
-- `figures.R`: Generate figures not associated with simulations (e.g., equilibrium trade-offs, populaiton diversity; in `figures` folder)
+- `sock_data_clean.R`: clean/process the raw downloaded sockeye data.
   
-- `simulation_summary.Rmd`: R Markdown doc that summarizes simulations, and generates figures for manuscript (in `images` folder)
+- `sst_import_process.R`: read in SST data, generate anomalies and calculate average SST over a specified period and region.
 
-- `appendix_A.R`: R Markdown doc that details the stationary Ricker to time-varying Beverton-Holt formulation we used, and simulations to justify its parameterization in our closed-loop simulations. 
+- `sst_explore.R`: explore the SST anomalies. 
+
+- `detrend_covars.R`: de-trend covariates.
+
+- `sock_covariates.R`:  create stock specific covariates used in analysis.
+
+- `sock_explore.R`:  exploratory graphics and summaries of sockeye and covariate data.
+
+- `single_stock.R`:  exploratory single-stock generalized Ricker models.
+
+- `hbm_fit.R`:  fit hierarchical bayesian models.
+
+- `pub.R`:  generate all tables and figures.
+
