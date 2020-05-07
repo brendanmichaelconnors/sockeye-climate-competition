@@ -491,7 +491,7 @@ r2.hb07tna <- bayes_R2(sock$lnRS[sock$BY >= 1975], as.matrix(hb07tna, pars = "yh
 save(r2.hb07tna, file = "./output/r2_hb07tna.RData")
 
 pdf("./figures/hbm_fit/hb07tna_resid.pdf", width = 8, height = 8)
-    plot_hbm_resids(hb07tna, socksock[sock$BY >= 1975, ])
+    plot_hbm_resids(hb07tna, sock[sock$BY >= 1975, ])
 dev.off()
 
 

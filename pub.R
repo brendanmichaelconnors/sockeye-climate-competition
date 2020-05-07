@@ -411,7 +411,6 @@ rect(xleft = -165, ybottom = 47, xright = -120, ytop = 61,
 dev.off()
 
 
-
 ## Fig: Posterior percent change density; main model (post '77 BYs) -------------------
 lst <- hb07_density_df(hb07r2)
 s.df <- lst$stock
@@ -461,7 +460,6 @@ print(g)
 pdf("./pub/fig_post_density.pdf", width = 4, height = 6)
     print(g)
 dev.off()
-
 
 
 ## Fig: dot + density main ---------------------------------
@@ -661,59 +659,6 @@ print(g)
 pdf("./pub/Sfig_coef_dot_89.pdf", width = 6.5, height = 6.0)
     print(g)
 dev.off()
-
-## Fig: dot + density 88/89 geographic ---------------------
-gamma.stock <- hb_param_df(hb07rg, "gamma", "Ocean.Region", "SST",
-                           sock.info[sock.info$yr_end >= 1987, ])
-kappa.stock <- hb_param_df(hb07rg, "kappa", "Ocean.Region", "Comp",
-                           sock.info[sock.info$yr_end >= 1987, ])
-chi.stock   <- hb_param_df(hb07rg, "chi", "Ocean.Region", "SST x Comp",
-                           sock.info[sock.info$yr_end >= 1987, ])
-df.dot <- rbind(gamma.stock, kappa.stock, chi.stock)
-df.dot <- ocean_region_lab(df.dot, "region", FALSE)
-df.dot$var <- factor(df.dot$var, levels = c("SST", "Comp", "SST x Comp"))
-df.mu <- plyr::ddply(df.dot, .(region, var), summarize,
-                     mu_mean = unique(mu_mean),
-                     mu_2.5 = unique(`mu_2.5%`),
-                     mu_97.5 = unique(`mu_97.5%`),
-                     ocean_region_lab = unique(ocean_region_lab),
-                     ystart = Stock[1],
-                     yend = Stock[length(Stock)])
-## split(df.dot, list(df.dot$region, df.dot$var))
-
-g <- ggplot(df.dot) +
-    geom_vline(xintercept = 0, color = "grey50", linetype = 2, size = 0.25) +
-    geom_point(aes(x = mean, y = Stock, color = ocean_region_lab, shape = ocean_region_lab)) +
-    geom_segment(aes(y = Stock, yend = Stock, x = `2.5%`, xend = `97.5%`,
-                     color = ocean_region_lab), size = 0.25) +
-    geom_segment(data = df.mu, aes(y = ystart, yend = yend, x = mu_mean, xend = mu_mean,
-                                   color = ocean_region_lab), size = 0.25) +
-    geom_rect(data = df.mu, aes(xmin = mu_2.5, xmax = mu_97.5, ymin = ystart,
-                                ymax = yend, fill = ocean_region_lab),
-              alpha = 0.2) +
-    scale_color_manual(values = rev(col.region)) +
-    scale_shape_manual(values = c(15, 16, 17)) +
-    scale_fill_manual(values = rev(col.region), guide = FALSE) +
-    labs(x = "Coefficient",
-         y = "",
-         color = "",
-         shape = "") +
-    facet_wrap( ~ var) +
-    scale_x_continuous(breaks=c(-0.25,0,0.25))+
-    theme_sleek(base_size = 10) +
-    theme(legend.justification = c(0, 0),
-          legend.position = c(0.01, 0.87),
-          legend.key.size = unit(10, "pt"),
-          legend.background = element_blank(),
-          legend.text = element_text(size = 8),
-          panel.spacing.x = unit(-0.5, "pt"))
-print(g)
-
-pdf("./pub/Sfig_coef_dot_89_geo.pdf", width = 6.5, height = 6.0)
-    print(g)
-dev.off()
-
-
 
 ## Fig: dot + density full time series --------------------------------
 gamma.stock <- hb_param_df(hb07a, "gamma", "Ocean.Region", "SST",
@@ -963,100 +908,6 @@ pdf("./pub/Sfig_coef_dot_total_comp_na_numbers.pdf", width = 6.5, height = 6.0)
     print(g)
 dev.off()
 
-
-## Fig: dot + density NP hatchery pinks --------------------
-gamma.stock <- hb_param_df(hb07h, "gamma", "Ocean.Region", "SST")
-kappa.stock <- hb_param_df(hb07h, "kappa", "Ocean.Region", "Comp")
-chi.stock   <- hb_param_df(hb07h, "chi", "Ocean.Region", "SST x Comp")
-df.dot <- rbind(gamma.stock, kappa.stock, chi.stock)
-df.dot <- ocean_region_lab(df.dot, "region", FALSE)
-df.dot$var <- factor(df.dot$var, levels = c("SST", "Comp", "SST x Comp"))
-df.mu <- plyr::ddply(df.dot, .(region, var), summarize,
-                     mu_mean = unique(mu_mean),
-                     mu_2.5 = unique(`mu_2.5%`),
-                     mu_97.5 = unique(`mu_97.5%`),
-                     ocean_region_lab = unique(ocean_region_lab),
-                     ystart = Stock[1],
-                     yend = Stock[length(Stock)])
-
-g <- ggplot(df.dot) +
-    geom_vline(xintercept = 0, color = "grey50", linetype = 2, size = 0.25) +
-    geom_point(aes(x = mean, y = Stock, color = ocean_region_lab, shape = ocean_region_lab)) +
-    geom_segment(aes(y = Stock, yend = Stock, x = `2.5%`, xend = `97.5%`,
-                     color = ocean_region_lab), size = 0.25) +
-    geom_segment(data = df.mu, aes(y = ystart, yend = yend, x = mu_mean, xend = mu_mean,
-                                   color = ocean_region_lab), size = 0.25) +
-    geom_rect(data = df.mu, aes(xmin = mu_2.5, xmax = mu_97.5, ymin = ystart,
-                                ymax = yend, fill = ocean_region_lab),
-              alpha = 0.2) +
-    scale_color_manual(values = rev(col.region)) +
-    scale_shape_manual(values = c(15, 16, 17)) +
-    scale_fill_manual(values = rev(col.region), guide = FALSE) +
-    labs(x = "Coefficient",
-         y = "",
-         color = "",
-         shape = "") +
-    facet_wrap( ~ var) +
-    scale_x_continuous(breaks=c(-0.25,0,0.25))+
-    theme_sleek(base_size = 10) +
-    theme(legend.justification = c(0, 0),
-          legend.position = c(0.01, 0.87),
-          legend.key.size = unit(10, "pt"),
-          legend.background = element_blank(),
-          legend.text = element_text(size = 8),
-          panel.spacing.x = unit(-0.5, "pt"))
-print(g)
-
-pdf("./pub/Sfig_coef_dot_hatchery_numbers.pdf", width = 6.5, height = 6.0)
-    print(g)
-dev.off()
-
-## Fig: dot + density no 2003 + 2005 -----------------------
-gamma.stock <- hb_param_df(hb07out, "gamma", "Ocean.Region", "SST")
-kappa.stock <- hb_param_df(hb07out, "kappa", "Ocean.Region", "Comp")
-chi.stock   <- hb_param_df(hb07out, "chi", "Ocean.Region", "SST x Comp")
-df.dot <- rbind(gamma.stock, kappa.stock, chi.stock)
-df.dot <- ocean_region_lab(df.dot, "region", FALSE)
-df.dot$var <- factor(df.dot$var, levels = c("SST", "Comp", "SST x Comp"))
-df.mu <- plyr::ddply(df.dot, .(region, var), summarize,
-                     mu_mean = unique(mu_mean),
-                     mu_2.5 = unique(`mu_2.5%`),
-                     mu_97.5 = unique(`mu_97.5%`),
-                     ocean_region_lab = unique(ocean_region_lab),
-                     ystart = Stock[1],
-                     yend = Stock[length(Stock)])
-
-g <- ggplot(df.dot) +
-    geom_vline(xintercept = 0, color = "grey50", linetype = 2, size = 0.25) +
-    geom_point(aes(x = mean, y = Stock, color = ocean_region_lab, shape = ocean_region_lab)) +
-    geom_segment(aes(y = Stock, yend = Stock, x = `2.5%`, xend = `97.5%`,
-                     color = ocean_region_lab), size = 0.25) +
-    geom_segment(data = df.mu, aes(y = ystart, yend = yend, x = mu_mean, xend = mu_mean,
-                                   color = ocean_region_lab), size = 0.25) +
-    geom_rect(data = df.mu, aes(xmin = mu_2.5, xmax = mu_97.5, ymin = ystart,
-                                ymax = yend, fill = ocean_region_lab),
-              alpha = 0.2) +
-    scale_color_manual(values = rev(col.region)) +
-    scale_shape_manual(values = c(15, 16, 17)) +
-    scale_fill_manual(values = rev(col.region), guide = FALSE) +
-    labs(x = "Coefficient",
-         y = "",
-         color = "",
-         shape = "") +
-    facet_wrap( ~ var) +
-    scale_x_continuous(breaks=c(-0.25,0,0.25))+
-    theme_sleek(base_size = 10) +
-    theme(legend.justification = c(0, 0),
-          legend.position = c(0.01, 0.87),
-          legend.key.size = unit(10, "pt"),
-          legend.background = element_blank(),
-          legend.text = element_text(size = 8),
-          panel.spacing.x = unit(-0.5, "pt"))
-print(g)
-
-pdf("./pub/Sfig_coef_dot_nooutliers.pdf", width = 6.5, height = 6.0)
-    print(g)
-dev.off()
 
 ## Fig: dot + density SEAK in GOA --------------------------
 gamma.stock <- hb_param_df(hb07oc, "gamma", "Ocean.Region2", "SST")
