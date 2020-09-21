@@ -24,6 +24,7 @@ library(codatools)
 library(loo)
 library(rstan)
 library(bayesplot)
+library(tidyverse)
 
 ## Install packages from github
 # library(devtools)
